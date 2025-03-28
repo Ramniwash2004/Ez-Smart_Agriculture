@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os
 
 # Securely get API key from environment variable
-API_KEY = os.getenv("AIzaSyA4f1LK9oMxH5HPEDzeu0JGJGVMHYs8e5A")
+API_KEY = os.getenv("*write down your created gemini api key* ")
 if not API_KEY:
     raise ValueError("❌ ERROR: GEMINI_API_KEY is not set in environment variables.")
 
