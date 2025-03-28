@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #chatContainer { width: 50%; margin: auto; }
+        #userInput { width: 70%; padding: 10px; }
+        #sendBtn { padding: 10px; cursor: pointer; }
+        #chatResponse { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Gemini AI Chatbot</h2>
+    <div id="chatContainer">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button id="sendBtn">Send</button>
+        <div id="chatResponse"></div>
+    </div>
+
+    <script>
+        document.getElementById("sendBtn").addEventListener("click", async function() {
+            let message = document.getElementById("userInput").value;
+            if (!message) return;
+
+            let response = await fetch("/chatbot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+            let data = await response.json();
+            document.getElementById("chatResponse").innerText = "Bot: " + data.reply;
+        });
+    </script>
+
+</body>
+</html>

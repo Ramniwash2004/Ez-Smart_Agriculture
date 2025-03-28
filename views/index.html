@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezcrop - Smart Agriculture for Better Yields</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="site-wrapper"> 
+        <!-- Hero Section with Background -->
+        <div class="hero-section">
+            <!-- Background Image with Overlay -->
+            <div class="hero-background">
+                <div class="overlay"></div>
+            </div>
+
+            <!-- Navigation -->
+            <header>
+                <div class="container">
+                    <div class="navbar">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="/" class="logo-link">
+                                <div class="logo-icon">
+                                    <i class="fa-solid fa-leaf leaf-1"></i>
+                                    <i class="fa-solid fa-leaf leaf-2"></i>
+                                </div>
+                                <span class="logo-text">Ez<span class="highlight">crop</span></span>
+                            </a>
+                        </div>
+
+                        <!-- Desktop Navigation -->
+                        <nav class="desktop-nav">
+                            <a href="#features" class="nav-link">Features</a>
+                            <a href="#how-it-works" class="nav-link">How It Works</a>
+                            <a href="#testimonials" class="nav-link">What People says</a>
+                            <a href="/about" class="nav-link">About Us</a>
+                        </nav>
+
+                        <!-- CTA Buttons -->
+                        <div class="nav-buttons">
+                            <button class="btn btn-outline" id="loginBtn" >Login</button>
+                            <button class="btn btn-primary" id="signupBtn" >Sign Up</button>
+                        </div>
+
+                        <!-- Mobile Menu Button -->
+                        <button class="mobile-menu-btn" id="mobileMenuBtn">
+                            <i class="fa-solid fa-bars" id="menuIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <div class="container">
+                        <a href="#features" class="mobile-nav-link">Features</a>
+                        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+                        <a href="#testimonials" class="mobile-nav-link">What People says</a>
+                        <a href="/about" class="mobile-nav-link">About Us</a>
+                        <div class="mobile-buttons">
+                            <button class="btn btn-outline full-width" id="loginBtn">Login</button>
+                            <button class="btn btn-primary full-width" id="signupBtn" >Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="auth-wrapper">
+                <div class="auth-container" id="loginContainer">
+                    <form id="loginForm" class="auth-form">
+                        <h2 class="form-title">Login</h2>
+                        <div class="form-group">
+                            <label for="username">User Name</label>
+                            <input type="text" id="username" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group captcha-group">
+                            <div class="captcha-image-wrapper">
+                                <canvas id="captchaCanvas" width="120" height="40"></canvas>
+                                <button type="button" id="refreshCaptcha" class="refresh-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                </button>
+                            </div>
+                            <div class="captcha-input-wrapper">
+                                <input type="text" id="captcha" placeholder="Captcha" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="auth-button">Log in</button>
+                        <div class="form-links">
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                            <a href="#" class="create-new" id="showSignup">Create new account</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="auth-container" id="signupContainer" style="display: none;">
+                    <form id="signupForm" class="auth-form">
+                        <h2 class="form-title">Create Account</h2>
+                        <p class="form-subtitle">Please fill in the information below</p>
+                        <div class="name-group">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" placeholder="Enter first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mobile-group">
+                        <div class="form-group number-group">
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="tel" id="mobileNumber" placeholder="Enter mobile number" required>
+            
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Zipcode</label>
+                        <input type="text" id="pincode" placeholder="Enter pincode" maxlength="6"  required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" id="fetchBranches" class="detect-button">Fetch Branches</button>
+                    </div>
+                    <div class="form-group" id="branchSelectGroup" style="display: none;">
+                        <label for="branchSelect">Select Branch</label>
+                        <select id="branchSelect" required>
+                            <option value="">Select a branch</option>
+                        </select>
+                    </div>
+                    <div id="locationInfo" class="location-info">
+                        <p id="branchInfo"></p>
+                        <p id="cityInfo"></p>
+                        <p id="districtInfo"></p>
+                        <p id="stateInfo"></p>
+                    </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" placeholder="Enter password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                        </div>
+                        <button type="submit" class="auth-button">Sign Up</button>
+                        <div class="form-links">
+                            <p class="login-link">
+                                Already have an account? 
+                                <a href="#" id="showLogin">Log in</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!-- Hero Content -->
+            <div class="hero-content container">
+                <div class="hero-text">
+                    <h1 class="hero-title">Smart Agriculture for <span class="highlight">Better Yields</span></h1>
+                    <p class="hero-subtitle">
+                        Optimize your irrigation with our IoT-based predictive system. Make data-driven decisions for your crops and increase productivity while conserving resources.
+                    </p>
+                    <div class="hero-buttons" id="heroButtons">
+                        <button class="btn btn-primary btn-lg">Get Started</button>
+                        <button class="btn btn-outline btn-lg">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="tech-elements">
+                    <div class="drone">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 4l1.6 4.8"></path>
+                            <path d="M15.2 6.4l-3.2 2.4"></path>
+                            <path d="M8.8 6.4l3.2 2.4"></path>
+                            <path d="M20 12h-4.8"></path>
+                            <path d="M16.8 8.8l2.4 3.2"></path>
+                            <path d="M16.8 15.2l2.4-3.2"></path>
+                            <path d="M12 20l1.6-4.8"></path>
+                            <path d="M15.2 17.6l-3.2-2.4"></path>
+                            <path d="M8.8 17.6l3.2-2.4"></path>
+                            <path d="M4 12h4.8"></path>
+                            <path d="M7.2 8.8l-2.4 3.2"></path>
+                            <path d="M7.2 15.2l-2.4-3.2"></path>
+                            <circle cx="12" cy="12" r="1"></circle>
+                        </svg>
+                        <div class="drone-shadow"></div>
+                    </div>
+                    
+                    <div class="tractor">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 4h9l1 7"></path>
+                            <path d="M4 11V4"></path>
+                            <path d="M8 10V4"></path>
+                            <path d="M18 8c-.5-1-1.9-2-3-2h-2l-2 4h-1"></path>
+                            <path d="M9 17a3 3 0 1 0 6 0 3 3 0 1 0-6 0z"></path>
+                            <path d="M17 17a3 3 0 1 0 6 0 3 3 0 1 0-6 0z"></path>
+                            <path d="M14 14h2"></path>
+                            <path d="M20 14h2"></path>
+                            <path d="M3 17a3 3 0 1 0 6 0 3 3 0 1 0-6 0z"></path>
+                        </svg>
+                    </div>
+                </div>               
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <i class="fa-solid fa-arrow-down bounce"></i>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Smart Features for Modern Farming</h2>
+                    <p class="section-subtitle">
+                        Our platform combines cutting-edge technology with agricultural expertise to help you maximize your farm's potential.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3 class="feature-title">Smart Irrigation</h3>
+                        <p class="feature-description">
+                            Optimize water usage with precision irrigation based on real-time soil moisture data and weather forecasts.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Automated Action</h3>
+                        <p class="feature-description">
+                            Irrigation systems automatically adjust based on the data-driven recommendations.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <h3 class="feature-title">Weather Integration</h3>
+                        <p class="feature-description">
+                            Stay ahead of changing weather conditions with integrated forecasts and automated response systems.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h3 class="feature-title">Web Control</h3>
+                        <p class="feature-description">
+                            Monitor and control your farm systems from anywhere with our intuitive web application.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="feature-title">Crop Database</h3>
+                        <p class="feature-description">
+                            A database  storing  water requirements, soil conditions, climate preferences, and optimal irrigation schedules.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <h3 class="feature-title">Resource Optimization</h3>
+                        <p class="feature-description">
+                            coming soon.....
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="container">
+                <div class="section-header light">
+                    <h2 class="section-title">How Ezcrop Works</h2>
+                    <p class="section-subtitle">
+                        Our simple three-step process gets you from setup to smarter farming in no time.
+                    </p>
+                </div>
+
+                <div class="steps-container">
+                    <!-- Step 1 -->
+                    <div class="step-card" data-aos="fade-right">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Install System</h3>
+                        <p class="step-description">
+                            Place  IoT sensors throughout your fields  to collect real-time data on soil conditions, moisture levels, and more.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card" data-aos="fade-up">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Connect Platform</h3>
+                        <p class="step-description">
+                            Link System to our cloud platform for real-time monitoring and analysis of your farm's conditions.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card" data-aos="fade-left">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Optimize & Grow</h3>
+                        <p class="step-description">
+                            Receive actionable insights and automated controls to optimize irrigation and crop management.
+                        </p>
+                    </div>
+                </div>
+                <div class="howItWorksButton">
+            <a href="/simulation">
+                <button class="group flex items-center bg-green-400 text-black px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-700 hover:text-white hover:px-6" >
+                    <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center transition-all duration-300 group-hover:w-8 group-hover:h-8 group-hover:bg-white">
+                        <svg class="w-4 h-4 text-transparent transition-all duration-300 group-hover:text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                    <span class="ml-2 transition-opacity duration-300 group-hover:opacity-100">
+                        Click Here to know more
+                    </span>
+                </button>
+            </a>
+            </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">What Our Farmers Say</h2>
+                    <p class="section-subtitle">
+                        Hear from farmers who have transformed their operations with Ezcrop technology.
+                    </p>
+                </div>
+
+                <div class="testimonials-slider" id="testimonialsSlider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                Since implementing Ezcrop's smart irrigation system, we've reduced our water usage by 35% while increasing our corn yield by 28%. The ROI was evident within the first growing season.
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Farmer">
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="author-name">Unknown Farmer</h4>
+                                    <p class="author-role">Corn Farmer, Kanpur</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                The predictive analytics have been a game-changer for our vineyard. We can now anticipate weather changes and disease risks before they impact our grapes, saving us thousands in potential losses.
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Vines">
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="author-name">Unknown</h4>
+                                    <p class="author-role">Wheat Farmer, Patna</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                As a third-generation farmer, I was skeptical about new technology. But Ezcrop's system is intuitive and has helped us modernize our operations while respecting our traditional farming practices.
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert Fields">
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="author-name">Unknown</h4>
+                                    <p class="author-role">Family Farm Owner,Bilaspur</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="slider-arrow prev" id="prevTestimonial">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-dots" id="testimonialDots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="slider-arrow next" id="nextTestimonial">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Ready to Transform Your Farming?</h2>
+                        <p class="cta-description">
+                            Join thousands of farmers who have increased yields by up to 30% while reducing water usage by 40%.
+                        </p>
+                    </div>
+                    <div class="cta-buttons">
+                        <button class="btn btn-white btn-lg">Start your Journey</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <a href="/" class="logo-link">
+                            <div class="logo-icon">
+                                <i class="fa-solid fa-leaf leaf-1"></i>
+                                <i class="fa-solid fa-leaf leaf-2"></i>
+                            </div>
+                            <span class="logo-text">Ez<span class="highlight">crop</span></span>
+                        </a>
+                        <p class="footer-description">
+                            Revolutionizing agriculture through smart technology and data-driven insights.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Product</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Resources</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter">
+                        <h4 class="footer-title">Stay Updated</h4>
+                        <p class="footer-description">
+                            Subscribe to our newsletter for the latest agricultural insights and product updates.
+                        </p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email" class="newsletter-input">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="copyright">© <span id="currentYear"></span> Ezcrop. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script type="module" src="./js/auth.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/main.js"></script>
+    
+</body>
+</html>

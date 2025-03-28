@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Ez Crop</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    
+            <div class="nav-toggle" id="navToggle">
+            </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Farm Dashboard</h1>
+                <div class="dashboard-actions">
+                    <a href="/"> 
+                        <button  class="btn btn-outline" >
+                        <i class="fa-solid fa-house"></i> Go Home
+                        </button>
+                    </a>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Overview Cards -->
+            <div class="dashboard-cards">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Soil Moisture</h3>
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="dash-card-value">68%</div>
+                    <div class="dash-card-info">Optimal range: 60-75%</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 68%;"></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Temperature</h3>
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="dash-card-value">24°C</div>
+                    <div class="dash-card-info">Optimal range: 20-28°C</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%; background: linear-gradient(to right, #f59e0b, #d97706);"></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Next Irrigation</h3>
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="dash-card-value">4h 30m</div>
+                    <div class="dash-card-info">Scheduled for 2:30 PM</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 35%; background: linear-gradient(to right, #3b82f6, #2563eb);"></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3>Weather</h3>
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="dash-card-value">Sunny</div>
+                    <div class="dash-card-info">No rain expected for 48h</div>
+                    <div class="weather-forecast">
+                        <div class="weather-day">
+                            <span>Today</span>
+                            <i class="fas fa-sun"></i>
+                            <span>26°C</span>
+                        </div>
+                        <div class="weather-day">
+                            <span>Tue</span>
+                            <i class="fas fa-sun"></i>
+                            <span>28°C</span>
+                        </div>
+                        <div class="weather-day">
+                            <span>Wed</span>
+                            <i class="fas fa-cloud"></i>
+                            <span>24°C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Tabs -->
+            <div class="dashboard-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="irrigation">Irrigation</button>
+                    <button class="tab-btn" data-tab="weather">Weather</button>
+                    <button class="tab-btn" data-tab="crops">Crops</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="overview">
+                        <div class="dashboard-charts">
+                            <div class="chart-container">
+                                <h3>Soil Moisture Levels</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="moistureChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <h3>Temperature</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="temperatureChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="irrigation">
+                        <div class="irrigation-schedule">
+                            <div class="schedule-calendar">
+                                <h3>Irrigation Schedule</h3>
+                                <div class="calendar-container" id="calendar">
+                                    <!-- Calendar will be generated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="schedule-list">
+                                <div class="schedule-item">
+                                    <div class="schedule-icon">
+                                        <i class="fas fa-tint"></i>
+                                    </div>
+                                    <div class="schedule-details">
+                                        <h4>Zone 1 - Corn Field</h4>
+                                        <span>2:30 PM - 3:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-icon blue">
+                                        <i class="fas fa-tint"></i>
+                                    </div>
+                                    <div class="schedule-details">
+                                        <h4>Zone 2 - Wheat Field</h4>
+                                        <span>4:00 PM - 4:30 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container full-width">
+                            <h3>Water Usage (Last 7 Days)</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="waterUsageChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="weather">
+                        <div class="weather-forecast-extended">
+                            <h3>Weather Forecast</h3>
+                            <div class="forecast-days" id="forecastDays">
+                                <!-- Weather forecast will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="chart-container full-width">
+                            <h3>Precipitation Forecast</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="precipitationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="crops">
+                        <div class="crops-distribution">
+                            <div class="chart-container">
+                                <h3>Crop Distribution</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="cropDistributionChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="crop-health">
+                                <h3>Crop Health</h3>
+                                <div class="health-item">
+                                    <div class="health-header">
+                                        <span>Corn</span>
+                                        <span class="health-status excellent">Excellent</span>
+                                    </div>
+                                    <div class="health-bar">
+                                        <div class="health-progress" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="health-item">
+                                    <div class="health-header">
+                                        <span>Wheat</span>
+                                        <span class="health-status good">Good</span>
+                                    </div>
+                                    <div class="health-bar">
+                                        <div class="health-progress" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="health-item">
+                                    <div class="health-header">
+                                        <span>Soybeans</span>
+                                        <span class="health-status fair">Fair</span>
+                                    </div>
+                                    <div class="health-bar">
+                                        <div class="health-progress fair" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="health-item">
+                                    <div class="health-header">
+                                        <span>Alfalfa</span>
+                                        <span class="health-status good">Good</span>
+                                    </div>
+                                    <div class="health-bar">
+                                        <div class="health-progress" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
