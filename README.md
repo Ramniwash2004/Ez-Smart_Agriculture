@@ -39,4 +39,4 @@ Feel free to fork the project and submit pull requests for improvements.
 
 
 ## Contact
-For queries or collaboration, reach out at **rajnaths9520@gmail.com**.
+For queries or collaboration, reach out at **kramniwash68@gmail.com**.
