@@ -13,9 +13,10 @@ The **Smart Agriculture Website** is an IoT-based platform that helps farmers mo
 
 ## Tech Stack
 - **Hardware:** ESP8266 Microcontroller, moisture Sensors.
-- **Frontend:** HTML, CSS, JavaScript, Tailwind Css
+- **Frontend:** HTML, CSS, JavaScript, Tailwind Css, Python
 - **Backend:** Firebase (Real-time Database)
-- **Environment:** Node.js
+- **Environment:** Node.js,Flask
+- **Tech:** Gemini API
 
 ## Installation
 ### Prerequisites
